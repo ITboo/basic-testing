@@ -7,6 +7,10 @@ export class BankAccount {
     this.balance = initialBalance;
   }
 
+  public getBalance() {
+    return this.balance;
+  }
+
   public deposit(amount: number): this {
     this.balance += amount;
 
