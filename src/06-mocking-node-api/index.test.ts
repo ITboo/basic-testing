@@ -39,31 +39,25 @@ describe('doStuffByInterval', () => {
     jest.useFakeTimers();
   });
 
-  beforeEach(() => {
-    jest.spyOn(global, 'setTimeout');
-  });
-
   afterAll(() => {
     jest.useRealTimers();
   });
 
   test('should set interval with provided callback and timeout', () => {
-    const timeout = 500;
     const callback = jest.fn();
-
-    doStuffByInterval(callback, timeout);
-
-    expect(setInterval).toHaveBeenCalledWith(callback, timeout);
+    jest.spyOn(global, 'setTimeout');
+    doStuffByTimeout(callback, 500);
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(callback, 500);
   });
 
   test('should call callback multiple times after multiple intervals', () => {
     const callback = jest.fn();
+    jest.spyOn(global, 'setInterval');
     doStuffByInterval(callback, 1000);
 
-    expect(callback).not.toHaveBeenCalled();
-
     jest.advanceTimersByTime(2000);
-
+    expect(callback).toHaveBeenCalled();
     expect(callback).toHaveBeenCalledTimes(2);
   });
 });

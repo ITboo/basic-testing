@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should generate linked list from values 2 1`] = `
-Object {
-  "next": Object {
-    "next": Object {
-      "next": Object {
+{
+  "next": {
+    "next": {
+      "next": {
         "next": null,
         "value": null,
       },

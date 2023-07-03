@@ -37,10 +37,12 @@ describe('throwCustomError', () => {
   });
 });
 
-describe('rejectCustomError', async () => {
-  try {
-    await rejectCustomError();
-  } catch (error) {
-    expect(error).toEqual(new MyAwesomeError());
-  }
+describe('rejectCustomError', () => {
+  test('should reject custom error', async () => {
+    try {
+      await rejectCustomError();
+    } catch (error) {
+      expect(error).toEqual(new MyAwesomeError());
+    }
+  });
 });
