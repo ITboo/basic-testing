@@ -58,15 +58,13 @@ describe('doStuffByInterval', () => {
 
   test('should call callback multiple times after multiple intervals', () => {
     const callback = jest.fn();
-    jest.spyOn(global, 'setInterval');
-    doStuffByInterval(callback, 100);
+    doStuffByInterval(callback, 1000);
 
-    expect(callback).not.toBeCalled();
+    expect(callback).not.toHaveBeenCalled();
 
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(2000);
 
-    expect(callback).toBeCalled();
-    expect(callback).toHaveBeenCalledTimes(10);
+    expect(callback).toHaveBeenCalledTimes(2);
   });
 });
 
